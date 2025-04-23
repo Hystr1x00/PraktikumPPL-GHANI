@@ -20,8 +20,10 @@ class logOutTest extends DuskTestCase
                 ->type('email', 'ganoy@gmail.com') //input email
                 ->type('password', '12345678') //input password
                 ->press('LOG IN') //klik button LOG IN
-                ->assertSee('Dashboard') //cek apakah ada text Dashboard
-                ->visit('/logout'); //visit /profile
+                ->assertPathIs('/dashboard')
+                ->click('@profile-dropdown') // Klik dropdown profile
+                ->waitFor('@logout-button') // Tunggu tombol logout muncul
+                ->click('@logout-button'); // Klik tombol logout
         });
     }
 }
